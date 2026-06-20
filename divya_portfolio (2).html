@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Divya Sri Kunapareddy – Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:       #0f0e0d;
+    --paper:     #f8f5f0;
+    --soft:      #ede9e2;
+    --rule:      #d4cfc6;
+    --accent:    #2563a8;
+    --accent2:   #e05c2a;
+    --muted:     #7a7570;
+    --white:     #ffffff;
+
+    --display:   'DM Serif Display', Georgia, serif;
+    --body:      'DM Sans', system-ui, sans-serif;
+    --mono:      'JetBrains Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ─────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(248, 245, 240, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+    height: 56px;
+  }
+  .nav-logo {
+    font-family: var(--display);
+    font-size: 1.1rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 56px;
+  }
+  .hero-left {
+    background: var(--ink);
+    padding: 10vh 6vw 8vh;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .hero-left::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.12;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .hero-name {
+    font-family: var(--display);
+    font-size: clamp(2.4rem, 4.5vw, 4rem);
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1.4rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-summary {
+    font-size: 1rem; color: #b8b3ab;
+    max-width: 400px; line-height: 1.75;
+    margin-bottom: 2.4rem;
+  }
+  .hero-contacts {
+    display: flex; flex-direction: column; gap: 0.55rem;
+  }
+  .hero-contacts a {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: #8a8580;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .hero-contacts a:hover { color: var(--accent); }
+
+  .hero-right {
+    padding: 10vh 6vw 8vh;
+    display: flex; flex-direction: column; justify-content: center;
+    background: var(--soft);
+  }
+  .stat-block {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2rem; margin-bottom: 3rem;
+  }
+  .stat { border-left: 2px solid var(--accent2); padding-left: 1rem; }
+  .stat-num {
+    font-family: var(--display);
+    font-size: 2.4rem; color: var(--ink); line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.78rem; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 0.3rem 0.7rem;
+    font-family: var(--mono);
+    font-size: 0.73rem;
+    color: var(--ink);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .tag:hover { border-color: var(--accent); color: var(--accent); }
+  .tag.accent { background: var(--accent); color: var(--white); border-color: var(--accent); }
+
+  /* ── SECTION WRAPPER ─────────────────── */
+  section { padding: 7vh 8vw; }
+  section + section { border-top: 1px solid var(--rule); }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.7rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: var(--display);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--ink);
+    line-height: 1.15;
+    margin-bottom: 3rem;
+  }
+
+  /* ── EDUCATION ───────────────────────── */
+  .edu-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .edu-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 1.6rem;
+    position: relative;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .edu-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.07); transform: translateY(-2px); }
+  .edu-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 6px 6px 0 0;
+  }
+  .edu-degree { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem; }
+  .edu-inst { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.9rem; }
+  .edu-score {
+    font-family: var(--mono); font-size: 0.78rem;
+    background: var(--soft); display: inline-block;
+    padding: 0.2rem 0.6rem; border-radius: 3px; color: var(--accent);
+  }
+  .edu-year {
+    position: absolute; top: 1.4rem; right: 1.4rem;
+    font-family: var(--mono); font-size: 0.7rem; color: var(--muted);
+  }
+
+  /* ── PROJECTS ────────────────────────── */
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem;
+  }
+  .project-card {
+    background: var(--ink);
+    border-radius: 8px;
+    padding: 2rem;
+    color: var(--white);
+    position: relative; overflow: hidden;
+    transition: transform 0.2s;
+  }
+  .project-card:hover { transform: translateY(-3px); }
+  .project-card::after {
+    content: '';
+    position: absolute; bottom: -40px; right: -40px;
+    width: 130px; height: 130px; border-radius: 50%;
+    background: var(--accent); opacity: 0.08;
+  }
+  .project-number {
+    font-family: var(--mono); font-size: 0.68rem;
+    color: var(--accent2); letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 0.8rem;
+  }
+  .project-title {
+    font-family: var(--display);
+    font-size: 1.35rem; color: var(--white);
+    margin-bottom: 1rem; line-height: 1.25;
+  }
+  .project-bullets { list-style: none; padding: 0; margin-bottom: 1.4rem; }
+  .project-bullets li {
+    font-size: 0.85rem; color: #a8a39c;
+    padding: 0.35rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding-left: 0.9rem; position: relative;
+  }
+  .project-bullets li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--accent2); font-size: 0.75rem;
+  }
+  .project-tools { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .ptag {
+    font-family: var(--mono); font-size: 0.68rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 0.18rem 0.55rem; border-radius: 3px;
+    color: #c0bbb5;
+  }
+
+  /* ── SKILLS ──────────────────────────── */
+  .skills-layout {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+  }
+  .skill-group-title {
+    font-family: var(--mono); font-size: 0.72rem;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--accent); margin-bottom: 0.9rem;
+  }
+  .skill-pill-group { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+  .skill-pill {
+    background: var(--white);
+    border: 1px solid var(--rule); border-radius: 20px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.82rem; color: var(--ink);
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .skill-pill:hover {
+    background: var(--accent); color: var(--white); border-color: var(--accent);
+  }
+
+  /* ── CERTIFICATIONS & ACHIEVEMENTS ───── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+  .cert-item, .ach-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1rem 0; border-bottom: 1px solid var(--rule);
+  }
+  .cert-icon, .ach-icon {
+    width: 36px; height: 36px; flex-shrink: 0;
+    background: var(--soft); border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .cert-name { font-weight: 500; font-size: 0.92rem; }
+  .cert-org, .ach-sub { font-size: 0.78rem; color: var(--muted); margin-top: 0.15rem; }
+
+  /* ── FOOTER ──────────────────────────── */
+  footer {
+    background: var(--ink);
+    color: #8a8580;
+    text-align: center;
+    padding: 3rem 2rem;
+    font-size: 0.82rem;
+    font-family: var(--mono);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* ── RESPONSIVE ──────────────────────── */
+  @media (max-width: 800px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { min-height: 60vh; }
+    .stat-block { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .two-col { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Divya Sri K.</a>
+  <ul class="nav-links">
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home" style="padding:0; border:none;">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Data Analyst · IT Graduate</p>
+    <h1 class="hero-name">Divya Sri<br/><em>Kunapareddy</em></h1>
+    <p class="hero-summary">
+      Aspiring Data Analyst with hands-on experience in SQL, Python, Excel, and Power BI — turning raw data into decisions that matter.
+    </p>
+    <div class="hero-contacts">
+      <a href="tel:+917981712435">📞 +91 79817 12435</a>
+      <a href="mailto:divyakunapareddy64@gmail.com">✉ divyakunapareddy64@gmail.com</a>
+      <a href="https://www.linkedin.com/in/divya-sri-kunapareddy-917143319/" target="_blank">🔗 LinkedIn Profile</a>
+      <a href="https://github.com/Divya734615" target="_blank">🐙 GitHub / Divya734615</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-block">
+      <div class="stat">
+        <div class="stat-num">7.6</div>
+        <div class="stat-label">B.Tech CGPA</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2026</div>
+        <div class="stat-label">Graduating Year</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Projects Built</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Certifications</div>
+      </div>
+    </div>
+    <p style="font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:0.8rem;">Core Stack</p>
+    <div class="skill-tags">
+      <span class="tag accent">Power BI</span>
+      <span class="tag accent">Python</span>
+      <span class="tag accent">SQL</span>
+      <span class="tag">Excel</span>
+      <span class="tag">Machine Learning</span>
+      <span class="tag">ReactJS</span>
+      <span class="tag">Data Viz</span>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-label">Academic Background</p>
+  <h2 class="section-title">Education</h2>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <span class="edu-year">2026</span>
+      <div class="edu-degree">B.Tech – Information Technology</div>
+      <div class="edu-inst">Prasad V. Potluri Siddhartha Institute of Technology</div>
+      <span class="edu-score">CGPA: 7.6 / 10</span>
+    </div>
+    <div class="edu-card">
+      <span class="edu-year">Intermediate</span>
+      <div class="edu-degree">Intermediate (MPC)</div>
+      <div class="edu-inst">Narayana Junior College</div>
+      <span class="edu-score">78.3%</span>
+    </div>
+    <div class="edu-card">
+      <span class="edu-year">SSC</span>
+      <div class="edu-degree">Secondary School Certificate</div>
+      <div class="edu-inst">Montessori English Medium High School</div>
+      <span class="edu-score">85.3%</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="background: var(--soft);">
+  <p class="section-label">Work Samples</p>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <p class="project-number">Project 01</p>
+      <h3 class="project-title">Campaign Performance Dashboard</h3>
+      <ul class="project-bullets">
+        <li>Designed an interactive dashboard to visualise campaign KPIs and customer engagement metrics</li>
+        <li>Created dynamic reports using charts and filters to support business decision-making</li>
+      </ul>
+      <div class="project-tools">
+        <span class="ptag">Power BI</span>
+        <span class="ptag">Excel</span>
+        <span class="ptag">SQL</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <p class="project-number">Project 02</p>
+      <h3 class="project-title">Self-Adaptive Teaching Management System</h3>
+      <ul class="project-bullets">
+        <li>Developed a machine learning system for student performance prediction</li>
+        <li>Implemented predictive analytics and data-driven recommendations using RL</li>
+      </ul>
+      <div class="project-tools">
+        <span class="ptag">Python</span>
+        <span class="ptag">Machine Learning</span>
+        <span class="ptag">Reinforcement Learning</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Technical Arsenal</p>
+  <h2 class="section-title">Skills</h2>
+  <div class="skills-layout">
+    <div>
+      <p class="skill-group-title">Programming</p>
+      <div class="skill-pill-group">
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">SQL</span>
+        <span class="skill-pill">Java (Basics)</span>
+        <span class="skill-pill">C++</span>
+      </div>
+    </div>
+    <div>
+      <p class="skill-group-title">Data Analytics</p>
+      <div class="skill-pill-group">
+        <span class="skill-pill">Power BI</span>
+        <span class="skill-pill">Excel</span>
+        <span class="skill-pill">Data Visualisation</span>
+        <span class="skill-pill">Data Cleaning</span>
+      </div>
+    </div>
+    <div>
+      <p class="skill-group-title">Databases</p>
+      <div class="skill-pill-group">
+        <span class="skill-pill">SQL Server</span>
+        <span class="skill-pill">DBMS</span>
+      </div>
+    </div>
+    <div>
+      <p class="skill-group-title">Web Technologies</p>
+      <div class="skill-pill-group">
+        <span class="skill-pill">HTML</span>
+        <span class="skill-pill">CSS</span>
+        <span class="skill-pill">JavaScript</span>
+        <span class="skill-pill">ReactJS</span>
+      </div>
+    </div>
+    <div>
+      <p class="skill-group-title">Concepts</p>
+      <div class="skill-pill-group">
+        <span class="skill-pill">OOPs</span>
+        <span class="skill-pill">Data Analysis</span>
+      </div>
+    </div>
+    <div>
+      <p class="skill-group-title">Soft Skills</p>
+      <div class="skill-pill-group">
+        <span class="skill-pill">Communication</span>
+        <span class="skill-pill">Teamwork</span>
+        <span class="skill-pill">Problem Solving</span>
+        <span class="skill-pill">Time Management</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS & ACHIEVEMENTS -->
+<section id="achievements" style="background: var(--soft);">
+  <p class="section-label">Recognition</p>
+  <h2 class="section-title">Certifications &amp; Achievements</h2>
+  <div class="two-col">
+    <div>
+      <h3 style="font-size:0.9rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:1rem;">Certifications</h3>
+      <div class="cert-item">
+        <div class="cert-icon">☕</div>
+        <div>
+          <div class="cert-name">Fundamentals of Java</div>
+          <div class="cert-org">HackerRank</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon">🧮</div>
+        <div>
+          <div class="cert-name">Data Structures &amp; Algorithms</div>
+          <div class="cert-org">Smart Interviews</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:0.9rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:1rem;">Achievements</h3>
+      <div class="ach-item">
+        <div class="ach-icon">🏆</div>
+        <div>
+          <div class="cert-name">1st Place – Badminton Competition</div>
+          <div class="ach-sub">Inter-college sports achievement</div>
+        </div>
+      </div>
+      <div class="ach-item">
+        <div class="ach-icon">💡</div>
+        <div>
+          <div class="cert-name">Entrepreneurship Program</div>
+          <div class="ach-sub">Participated in institutional program</div>
+        </div>
+      </div>
+      <div class="ach-item">
+        <div class="ach-icon">👩‍💼</div>
+        <div>
+          <div class="cert-name">Women Cell Coordinator</div>
+          <div class="ach-sub">Leadership & coordination role</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:0.5rem; color:#d4cfc6; font-size:0.95rem; font-family:'DM Serif Display',serif;">Divya Sri Kunapareddy</p>
+  <p>
+    <a href="mailto:divyakunapareddy64@gmail.com">divyakunapareddy64@gmail.com</a>
+    &nbsp;·&nbsp;
+    <a href="https://github.com/Divya734615" target="_blank">GitHub</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.linkedin.com/in/divya-sri-kunapareddy-917143319/" target="_blank">LinkedIn</a>
+  </p>
+  <p style="margin-top:1rem; font-size:0.65rem; opacity:0.5;">© 2026 Divya Sri Kunapareddy. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
